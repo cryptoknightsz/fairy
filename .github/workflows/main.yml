@@ -22,13 +22,8 @@ jobs:
           RANDOM_COMMITS=$((RANDOM % 16 + 5)) # Minimum 5 commits, maximum 20
           echo "Number of commits today: $RANDOM_COMMITS"
 
-          # Commit multiple times at random intervals
+          # Create all commits in a loop
           for ((i=1; i<=RANDOM_COMMITS; i++)); do
-            # Generate a random interval between 1 and 60 minutes
-            RANDOM_INTERVAL=$((RANDOM % 60 + 1))
-            echo "Waiting for $RANDOM_INTERVAL minute(s) before commit $i..."
-            sleep $((RANDOM_INTERVAL * 60))
-            
             # Create a unique empty commit with a timestamp
             git commit --allow-empty -m "Automated commit #$i: $(date +'%Y-%m-%d %H:%M:%S')"
           done
